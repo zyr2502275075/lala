@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="点击获取" id="btn"/>
+	<ul id="uu"></ul>
+</body>
+</html>
+<script>
+	window.onload = function() {
+		var bu = document.getElementById('btn');
+		bu.onclick = function() {
+			var xx = new XMLHttpRequest();
+			xx.open('get', 'newsList.php', 'true');
+			xx.send();
+			xx.onreadystatechange = function() {
+				if (xx.readyState == 4) {
+					if (xx.status == 200) {
+						var data = JSON.parse(xx.responseText);
+						var ul = document.getElementById('uu');
+						var te = '';
+						for (var i = 0; i < data.length; i++) {
+							te += '<li><a href="">' + data[i].title + '</a> [<span>' + data[i].date + '</span>]</li>';
+						}
+						ul.innerHTML = html;
+					} else {
+						alert('出错了,Err：' + xx.status);
+					}
+				}
+			};
+		};
+	};
+	};
+</script>

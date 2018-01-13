@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#bo {
+			width: 2000px;
+			height: 50px;
+			background-color: antiquewhite;
+		}
+		ul li {
+			width: 150px;
+			height: 30px;
+			float: left;
+			text-align: center;
+			line-height: 30px;
+			list-style: none;
+			margin-top: 10px;
+		}
+		.hover {
+			background-color: palegreen;
+		}
+		.yuan {
+			width: 150px;
+			height: 50px;
+			float: left;
+			text-align: center;
+			line-height: 50px;
+			background-color: #43431f;
+		}
+		#r1 {
+			width: 500px;
+			height: 30px;
+			background-color: gray;
+		}
+		#shou {
+			width: 400px;
+			height: 200px;
+			border: 1px solid blue;
+			margin-top: 20px;
+			margin-left: 50px;
+		}
+		#r2 {
+			width: 400px;
+			height: 20px;
+			background-color: skyblue;
+		}
+	</style>
+</head>
+<script src="./js/vue2.min.js"></script>
+<body>
+	<div id="box">
+		<div id="bo">周考</div>
+		<div id="left" style="float: left ;width: 300px;
+		height: 500px;">
+			<ul>
+				<li v-for="key in names" @click="show1(key.name)" :class="typee==key.name?'yuan':'hover'">{{key.name}}</li>
+			</ul>
+		</div>
+<!--首页-->
+		<div id="right" style="float: left">
+			<div v-if="typee=='首页'" id="r1">周考/{{typee}}</div>
+			<div v-if="typee=='首页'" id="shou">
+				<div id="r1">{{typee}}</div>
+				<div>{{a}}</div>
+			</div>
+		</div>
+<!--菜单1-->
+		<div id="right" style="float: left">
+			<div v-if="typee=='菜单1'" id="r1">周考/{{typee}}</div>
+			<div v-if="typee=='菜单1'" id="shou">
+				<div id="r1">{{typee}}</div>
+				<div>{{b}}</div>
+			</div>
+		</div>
+<!--菜单2-->
+		<div id="right" style="float: left">
+			<div v-if="typee=='菜单2'" id="r1">周考/{{typee}}</div>
+			<div v-if="typee=='菜单2'" id="shou">
+				<div id="r1">{{typee}}</div>
+
+				<div>{{c}}</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+<script>
+	var vu=new Vue({
+		el:"#box",
+		data:{
+			
+			typee:'',
+			names: [{
+				name: '首页'
+			}, {
+				name: '菜单1'
+			}, {
+				name: '菜单2'
+			}],
+			
+			a:  '我是首页的内容', 
+			b: '我是菜单1的内容',
+		    c: '我是菜单2的内容',
+			
+		},
+		methods:{
+			show1:function(val){
+				vu.$data.typee = val;
+			}
+		}
+	})
+</script>
